@@ -1,6 +1,7 @@
 :root {
     /* color  */
     --clr-lime: hsl(61, 70%, 52%);
+    --clr-transparent-lime: hsla(61, 79%, 50%, 0.5);
     --clr-gray: hsl(203, 41%, 72%);
     --clr-label: hsl(200, 24%, 40%);
     
@@ -83,23 +84,66 @@ p {
     border: none;
     text-decoration: underline;
 }
+#clear:hover {
+    cursor: pointer;
+    color: var(--bg-card);
+}
 
 #input-section {
     flex: 1;
     padding: var(--gap-small);
 }
+
+#radio-label,
 label {
-    display: block;
+    display: inline-block;
     padding-bottom: 6px;
     font-size: 14px;
     color: var(--clr-label);
 }
-input {
+input[type="number"] {
     width: 100%;
     height: 35px;
     border: 1px solid var(--clr-gray);
     border-radius: var(--br-card);
     margin-bottom: var(--gap-small);
+}
+
+.radio-wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 6px;
+    padding: 6px;
+    align-items: center;
+    width: 100%;
+    height: 35px;
+    border: 1px solid var(--clr-gray);
+    border-radius: var(--br-card);
+    margin-bottom: var(--gap-small);
+}
+
+.radio-wrapper:has(input[type="radio"]:checked) {
+    border-color: var(--clr-lime);
+    background-color: var(--clr-transparent-lime);
+}
+
+.radio-wrapper label {
+    padding: 0;
+    color: var(--bg-card);
+    font-weight: 500;
+}
+button[type="submit"] {
+    display: inline-flex;
+    border: none;
+    width: 100%;
+    padding: 8px;
+    gap: 6px;
+    border-radius: var(--br-small);
+    background-color: var(--clr-lime);
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 #result-section {
@@ -161,6 +205,17 @@ input {
     #input-section {
         border-top-left-radius: var(--br-small);
         border-bottom-left-radius: var(--br-small);
+    }
+
+    .input-wrapper:has(input[type="number"]):not(:first-of-type) {
+        display: inline-block;
+        width: 47.5%;
+    }
+    .input-wrapper:has(input[type="number"]):nth-of-type(2) {
+        margin-inline-end: 5%;
+    }
+    button[type="submit"] {
+        width: 80%;
     }
     
     #result-section {
