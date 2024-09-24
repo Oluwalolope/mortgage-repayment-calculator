@@ -11,9 +11,9 @@ const InputSection = () => {
             </div>
 
             <form>
-                <Input name="mortgageAmount" type="number"  label="Mortgage Amount"  required />
-                <Input name="mortgageTerm" type="number"  label="Mortgage Term"  required />
-                <Input name="interestRate" type="number"  label="Interest Rate"  required />
+                <Input name="mortgageAmount" type="number"  label="Mortgage Amount" unit="&pound;"  required />
+                <Input name="mortgageTerm" type="number"  label="Mortgage Term" unit="years" required />
+                <Input name="interestRate" type="number"  label="Interest Rate" unit="%" required />
                 <Input name="mortgageType" radio1="Repayment" radio2="Interest Only" type="radio"  label="Mortgage Type"  required />
                 <button type="submit">
                     <img src={calculatorIcon} alt="an icon of a calculator" />

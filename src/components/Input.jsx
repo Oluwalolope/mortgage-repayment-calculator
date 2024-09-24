@@ -1,10 +1,14 @@
-const Input = ({name, label, type, radio1, radio2}) => {
+const Input = ({name, label, type, unit, radio1, radio2}) => {
     return (
         <>
             { type !== "radio" && 
                 <div className="input-wrapper">
                     <label htmlFor={name}>{label}</label>
-                    <input name={name} type={type} /> 
+
+                    <div className="unit-wrapper">
+                        <span className="unit">{unit}</span>
+                        <input name={name} type={type} /> 
+                    </div>
                 </div>
             }
 

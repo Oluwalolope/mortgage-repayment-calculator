@@ -1,9 +1,10 @@
 :root {
     /* color  */
     --clr-lime: hsl(61, 70%, 52%);
-    --clr-transparent-lime: hsla(61, 79%, 50%, 0.5);
+    --clr-transparent-lime: hsla(61, 79%, 50%, 0.325);
     --clr-gray: hsl(203, 41%, 72%);
     --clr-label: hsl(200, 24%, 40%);
+    --clr-red: hsl(4, 69%, 50%);
     
     /* background color */
     --bg-card: hsl(202, 55%, 10%);
@@ -35,7 +36,7 @@ body {
 
 main {
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
     flex-direction: column;
     background-color: white;
     width: min(100%, 800px);
@@ -88,6 +89,11 @@ p {
     cursor: pointer;
     color: var(--bg-card);
 }
+#clear:focus {
+    outline: 1px solid var(--bg-card);
+    outline-offset: 5px;
+    border-radius: var(--br-small);
+}
 
 #input-section {
     flex: 1;
@@ -101,26 +107,71 @@ label {
     font-size: 14px;
     color: var(--clr-label);
 }
+.unit-wrapper {
+    height: 35px;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: var(--gap-small);
+}
 input[type="number"] {
+    width: 100%;
+    height: 100%;
+    padding: 6px;
+    border: 1px solid var(--clr-gray);
+    border-top-left-radius: var(--br-card);
+    border-bottom-left-radius: var(--br-card);
+    margin-bottom: var(--gap-small);
+}
+input[name="mortgageAmount"] {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: var(--br-card);
+    border-bottom-right-radius: var(--br-card);
+}
+.unit {
+    color: var(--bg-card);
+    background-color: var(--clr-gray);
+    padding: 6px 8px;
+    border-top-right-radius: var(--br-card);
+    border-bottom-right-radius: var(--br-card);
+    font-weight: 700;
+}
+
+.unit-wrapper:has(input[name="mortgageAmount"]) {
+    flex-direction: row;
+}
+.unit-wrapper:has(input[name="mortgageAmount"]) > .unit {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: var(--br-card);
+    border-bottom-left-radius: var(--br-card);
+}
+
+
+input[type="radio"] {
+    accent-color: darkgoldenrod;
+    margin-inline-end: 5px;
+}
+
+.radio-wrapper {
+    display: flex;
+    padding: 6px;
     width: 100%;
     height: 35px;
     border: 1px solid var(--clr-gray);
     border-radius: var(--br-card);
     margin-bottom: var(--gap-small);
 }
-
-.radio-wrapper {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-    gap: 6px;
-    padding: 6px;
-    align-items: center;
-    width: 100%;
-    height: 35px;
-    border: 1px solid var(--clr-gray);
-    border-radius: var(--br-card);
-    margin-bottom: var(--gap-small);
+.radio-wrapper:hover {
+    cursor: pointer;
+    border-color: var(--clr-lime);
+}
+.radio-wrapper:has(input:focus) {
+    cursor: pointer;
+    border-color: var(--clr-lime);
+}
+.radio-wrapper input:focus {
+    outline-color: var(--clr-lime);
 }
 
 .radio-wrapper:has(input[type="radio"]:checked) {
@@ -129,9 +180,14 @@ input[type="number"] {
 }
 
 .radio-wrapper label {
+    height: 100%;
+    width: 100%;
     padding: 0;
+    font-weight: 700;
     color: var(--bg-card);
-    font-weight: 500;
+}
+.radio-wrapper label:hover {
+    cursor: pointer;
 }
 button[type="submit"] {
     display: inline-flex;
@@ -139,11 +195,18 @@ button[type="submit"] {
     width: 100%;
     padding: 8px;
     gap: 6px;
+    font-weight: 700;
     border-radius: var(--br-small);
     background-color: var(--clr-lime);
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin-block-start: 30px;
+}
+button[type="submit"]:hover {
+    cursor: pointer;
+    transition: 200ms ease-in-out;
+    background-color: var(--clr-transparent-lime);
 }
 
 #result-section {
@@ -180,6 +243,99 @@ button[type="submit"] {
     text-align: center;
 }
 
+/* Hover state */
+.unit-wrapper:hover > input[type="number"] {
+    border: 1px solid var(--clr-lime);
+    outline: 1px solid var(--clr-lime);
+    cursor: pointer;
+    border-right-color: transparent;
+    margin-bottom: calc(var(--gap-small) * 0.5);
+}
+.unit-wrapper:hover > input[name="mortgageAmount"] {
+    border: 1px solid var(--clr-lime);
+    outline: 1px solid var(--clr-lime);
+    cursor: pointer;
+    border-left-color: transparent;
+    margin-bottom: calc(var(--gap-small) * 0.5);
+}
+.unit-wrapper:hover > .unit {
+    border: 1px solid var(--clr-lime);
+    outline: 1px solid var(--clr-lime);
+    cursor: pointer;
+    border-left-color: transparent;
+    background-color: var(--clr-lime);
+}
+.unit-wrapper:hover:has(input[name="mortgageAmount"]) > .unit {
+    border: 1px solid var(--clr-lime);
+    outline: 1px solid var(--clr-lime);
+    cursor: pointer;
+    border-right-color: transparent;
+    background-color: var(--clr-lime);
+}
+/* focus state */
+.unit-wrapper:has(input:focus) > input[type="number"] {
+    border: 1px solid var(--clr-lime);
+    outline: 1px solid var(--clr-lime);
+    cursor: pointer;
+    border-right-color: transparent;
+    margin-bottom: calc(var(--gap-small) * 0.5);
+}
+.unit-wrapper:has(input:focus) > input[name="mortgageAmount"] {
+    border: 1px solid var(--clr-lime);
+    outline: 1px solid var(--clr-lime);
+    cursor: pointer;
+    border-left-color: transparent;
+    margin-bottom: calc(var(--gap-small) * 0.5);
+}
+.unit-wrapper:has(input:focus) > .unit {
+    border: 1px solid var(--clr-lime);
+    outline: 1px solid var(--clr-lime);
+    cursor: pointer;
+    border-left-color: transparent;
+    background-color: var(--clr-lime);
+}
+.unit-wrapper:has(input:focus):has(input[name="mortgageAmount"]) > .unit {
+    border: 1px solid var(--clr-lime);
+    outline: 1px solid var(--clr-lime);
+    cursor: pointer;
+    border-right-color: transparent;
+    background-color: var(--clr-lime);
+}
+
+/* invalid state */
+.invalid > .unit-wrapper > input[type="number"] {
+    border: 1px solid var(--clr-red);
+    border-right-color: transparent;
+    margin-bottom: calc(var(--gap-small) * 0.5);
+}
+.invalid > .unit-wrapper > input[name="mortgageAmount"] {
+    border: 1px solid var(--clr-red);
+    border-left-color: transparent;
+    margin-bottom: calc(var(--gap-small) * 0.5);
+}
+.invalid > .unit-wrapper > .unit {
+    border: 1px solid var(--clr-red);
+    border-left-color: transparent;
+    background-color: var(--clr-red);
+}
+.invalid > .unit-wrapper:has(input[name="mortgageAmount"]) > .unit {
+    border: 1px solid var(--clr-red);
+    border-right-color: transparent;
+    background-color: var(--clr-red);
+}
+.invalid::after {
+    content: "This field is required";
+    color: var(--clr-red);
+    font-size: 12px;
+}
+.radio-wrapper.invalid::after {
+    content: "This field is required";
+    color: var(--clr-red);
+    font-size: 12px;
+    margin-block-start: 15px;
+    display: block;
+}
+
 @media (min-width: 768px) {
     body {
         place-items: center;
@@ -188,7 +344,7 @@ button[type="submit"] {
     main {
         border-radius: var(--br-small);
         flex-direction: row;
-        height: 500px;
+        min-height: 500px;
         margin-inline: auto;
     }
 
