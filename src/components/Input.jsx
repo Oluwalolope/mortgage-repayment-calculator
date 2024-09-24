@@ -14,16 +14,16 @@ const Input = ({name, label, type, unit, radio1, radio2}) => {
 
             { type === "radio" && 
                 <> 
-                    <p id="radio-title">{label}</p>
+                    <p id="radio-label">{label}</p>
 
                     <div className="radio-wrapper">
-                        <label htmlFor={radio1}>{radio1}</label>
                         <input name={name} id={radio1} value={radio1} type={type} />
+                        <label htmlFor={radio1}>{radio1}</label>
                     </div>
 
                     <div className="radio-wrapper">
-                        <label htmlFor={radio2}>{radio2}</label>
                         <input name={name} id={radio2} value={radio2} type={type} />
+                        <label htmlFor={radio2}>{radio2}</label>
                     </div>
                 </>
             }

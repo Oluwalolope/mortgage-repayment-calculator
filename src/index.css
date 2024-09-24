@@ -9,6 +9,7 @@
     /* background color */
     --bg-card: hsl(202, 55%, 10%);
     --bg-result: hsl(202, 55%, 16%);
+    --bg-background: hsl(202, 86%, 94%);
 
     /* spacing */
     --gap-small: 0.8rem;
@@ -27,7 +28,7 @@
 body {
     display: grid;
     min-height: 100vh;
-    background-color: hsl(202, 86%, 94%);
+    background-color: var(--bg-background);
     overflow-x: hidden;
     font-family: "Plus Jakarta Sans", sans-serif;
     font-optical-sizing: auto;
@@ -103,7 +104,7 @@ p {
 #radio-label,
 label {
     display: inline-block;
-    padding-bottom: 6px;
+    padding-bottom: 8px;
     font-size: 14px;
     color: var(--clr-label);
 }
@@ -118,11 +119,14 @@ input[type="number"] {
     height: 100%;
     padding: 6px;
     border: 1px solid var(--clr-gray);
+    border-right:  none;
     border-top-left-radius: var(--br-card);
     border-bottom-left-radius: var(--br-card);
     margin-bottom: var(--gap-small);
 }
 input[name="mortgageAmount"] {
+    border-left: none;
+    border-right: 1px solid var(--clr-gray);
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-top-right-radius: var(--br-card);
@@ -130,7 +134,10 @@ input[name="mortgageAmount"] {
 }
 .unit {
     color: var(--bg-card);
-    background-color: var(--clr-gray);
+    background-color: var(--bg-background);
+    border-top: 1px solid var(--clr-gray);
+    border-bottom: 1px solid var(--clr-gray);
+    border-right: 1px solid var(--clr-gray);
     padding: 6px 8px;
     border-top-right-radius: var(--br-card);
     border-bottom-right-radius: var(--br-card);
@@ -145,6 +152,8 @@ input[name="mortgageAmount"] {
     border-bottom-right-radius: 0;
     border-top-left-radius: var(--br-card);
     border-bottom-left-radius: var(--br-card);
+    border-right: none;
+    border-left: 1px solid var(--clr-gray);
 }
 
 
