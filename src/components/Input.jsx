@@ -1,4 +1,4 @@
-const Input = ({name, label, type, unit, radio1, radio2}) => {
+const Input = ({name, label, type, unit, radio1, radio2, onUpdate, changedValue}) => {
     return (
         <>
             { type !== "radio" && 
@@ -7,7 +7,7 @@ const Input = ({name, label, type, unit, radio1, radio2}) => {
 
                     <div className="unit-wrapper">
                         <span className="unit">{unit}</span>
-                        <input name={name} type={type} /> 
+                        <input name={name} type={type} onChange={onUpdate} value={changedValue}/> 
                     </div>
                 </div>
             }

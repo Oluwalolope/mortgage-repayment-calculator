@@ -1,11 +1,25 @@
-const Result = () => {
+import { formatter } from '../util/mortgage.js';
+
+const Result = ({mortgageData, mortgageType = 'Repayment'}) => {
+    let monthly = mortgageData.monthlyRepayment;
+    let total = mortgageData.totalRepayment;
+
+    if (mortgageType !== 'Repayment') {
+        monthly = mortgageData.monthlyInterestOnly;
+        total = mortgageData.annualInterestOnly;
+    };
+
     return (
-        <div id="result">
-            <p>Your monthly repayments</p>
-            <h3>&pound;1,797.74</h3>
-            <p>Total you'll repay over the term</p>
-            <h4>$539,322.94</h4>
-        </div>
+      <div id="result">
+        <p>
+          Your monthly {mortgageType === 'Repayment' ? 'repayments' : 'interest'}
+        </p>
+        <h3>{formatter.format(monthly)}</h3>
+        <p>
+          Total {mortgageType === 'Repayment' ? "you'll repay" : "interest accrued"} over the term
+        </p>
+        <h4>{formatter.format(total)}</h4>
+      </div>
     );
 }
  
