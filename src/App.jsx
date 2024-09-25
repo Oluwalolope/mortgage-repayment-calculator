@@ -6,18 +6,19 @@ import { calculateMortgage } from './util/mortgage.js';
 
 const App = () => {
     const [submitted, setSubmitted] = useState(false);
-
+    
     const [mortgageData, setMortgageData] = useState({
       mortgageAmount: 300000,
       mortgageTerm: 25,
-      interestRate: 5
+      interestRate: 5,
+      mortgageType: ''
     });
 
     const handleChange = (identifier, value) => {
       setMortgageData((prevMortgageData) => {
         return {
           ...prevMortgageData,
-          [identifier]: +value,
+          [identifier]: value,
         };
       });
     };
@@ -27,12 +28,12 @@ const App = () => {
       setSubmitted((prevValue) => !prevValue);
     };
 
-    const data = calculateMortgage(mortgageData)[0];
+    const [data] = calculateMortgage(mortgageData);
 
     return (
         <main>
             <InputSection inputData={mortgageData} updateInputData={handleChange} handleSubmission={handleSubmit}/>
-            <ResultSection mortgageData={data} isSubmitted={submitted}/>
+            <ResultSection mortgageData={data} mortgageType={mortgageData.mortgageType} isSubmitted={submitted}/>
         </main>
     );
 }

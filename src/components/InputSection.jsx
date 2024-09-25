@@ -1,5 +1,6 @@
 import Input from './Input.jsx';
 import calculatorIcon from '../assets/icon-calculator.svg';
+import RadioButtonGroup from './RadioButtonGroup.jsx';
 
 
 const InputSection = ({inputData, updateInputData ,handleSubmission}) => {
@@ -38,11 +39,12 @@ const InputSection = ({inputData, updateInputData ,handleSubmission}) => {
             unit="%"
             required
           />
-          <Input
+          <RadioButtonGroup
             name="mortgageType"
-            radio1="Repayment"
-            radio2="Interest Only"
-            type="radio"
+            option1="Repayment"
+            option2="Interest Only"
+            selectedOption={inputData.mortgageType}
+            onUpdate={(e) => updateInputData('mortgageType', e.target.value)}
             label="Mortgage Type"
             required
           />

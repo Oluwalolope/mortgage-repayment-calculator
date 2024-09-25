@@ -10,10 +10,10 @@ export function calculateMortgage({
 }) {
   const mortgageResult = [];
 
-  const principal = mortgageAmount;
-  const annualRate = interestRate / 100;
+  const principal = parseInt(mortgageAmount);
+  const annualRate = parseInt(interestRate) / 100;
   const monthlyRate = annualRate / 12;
-  const duration = mortgageTerm * 12;
+  const duration = parseInt(mortgageTerm) * 12;
   const increment = (1 + monthlyRate) ** duration;
 
   // Formula for calculating monthly mortgage repayment

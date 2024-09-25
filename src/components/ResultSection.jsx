@@ -1,7 +1,7 @@
 import illustration from "../assets/illustration-empty.svg";
 import Result from "./Result.jsx";
 
-const ResultSection = ({isSubmitted, mortgageData}) => {
+const ResultSection = ({isSubmitted, mortgageData, mortgageType}) => {
     return (
       <section id="result-section">
         {isSubmitted ? (
@@ -12,7 +12,7 @@ const ResultSection = ({isSubmitted, mortgageData}) => {
               provided. To adjust the results, edit the form and click
               “calculate repayments” again.
             </p>
-            <Result mortgageData={mortgageData} />
+            <Result mortgageData={mortgageData} mortgageType={mortgageType}/>
           </>
         ) : (
           <>

@@ -1,6 +1,6 @@
 import { formatter } from '../util/mortgage.js';
 
-const Result = ({mortgageData, mortgageType = 'Repayment'}) => {
+const Result = ({mortgageData, mortgageType}) => {
     let monthly = mortgageData.monthlyRepayment;
     let total = mortgageData.totalRepayment;
 
