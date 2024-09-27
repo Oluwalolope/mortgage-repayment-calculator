@@ -8,9 +8,9 @@ const App = () => {
     const [submitted, setSubmitted] = useState(false);
     
     const [mortgageData, setMortgageData] = useState({
-      mortgageAmount: 300000,
-      mortgageTerm: 25,
-      interestRate: 5,
+      mortgageAmount: '',
+      mortgageTerm: '',
+      interestRate: '',
       mortgageType: ''
     });
 
@@ -23,16 +23,28 @@ const App = () => {
       });
     };
 
+    const handleClear = () => {
+      setMortgageData(() => {
+        return {
+          mortgageAmount: '',
+          mortgageTerm: '',
+          interestRate: '',
+          mortgageType: ''
+        };
+      });
+      setSubmitted(false);
+    };
+
     const handleSubmit = (e) => {
       e.preventDefault();
-      setSubmitted((prevValue) => !prevValue);
+      setSubmitted(true);
     };
 
     const [data] = calculateMortgage(mortgageData);
 
     return (
         <main>
-            <InputSection inputData={mortgageData} updateInputData={handleChange} handleSubmission={handleSubmit}/>
+            <InputSection inputData={mortgageData} updateInputData={handleChange} handleClearInput={handleClear} handleSubmission={handleSubmit}/>
             <ResultSection mortgageData={data} mortgageType={mortgageData.mortgageType} isSubmitted={submitted}/>
         </main>
     );

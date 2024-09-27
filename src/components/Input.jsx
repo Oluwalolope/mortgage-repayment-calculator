@@ -6,7 +6,7 @@ const Input = ({name, label, type, unit, onUpdate, changedValue}) => {
 
                 <div className="unit-wrapper">
                     <span className="unit">{unit}</span>
-                    <input name={name} type={type} onChange={onUpdate} value={changedValue} step="0.01"/> 
+                    <input name={name} type={type} onChange={onUpdate} value={changedValue} min="0.01" step="0.01" required/> 
                 </div>
             </div>
         </>

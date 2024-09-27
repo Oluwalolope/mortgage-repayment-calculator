@@ -3,12 +3,12 @@ import calculatorIcon from '../assets/icon-calculator.svg';
 import RadioButtonGroup from './RadioButtonGroup.jsx';
 
 
-const InputSection = ({inputData, updateInputData ,handleSubmission}) => {
+const InputSection = ({inputData, updateInputData ,handleSubmission, handleClearInput}) => {
     return (
       <section id="input-section">
         <div id="heading-wrapper">
           <h1>Mortgage Calculator</h1>
-          <button id="clear">Clear All</button>
+          <button id="clear" onClick={handleClearInput} >Clear All</button>
         </div>
 
         <form onSubmit={(e) => handleSubmission(e)}>
@@ -19,7 +19,6 @@ const InputSection = ({inputData, updateInputData ,handleSubmission}) => {
             onUpdate={(e) => updateInputData('mortgageAmount', e.target.value)}
             label="Mortgage Amount"
             unit="&pound;"
-            required
           />
           <Input
             name="mortgageTerm"
@@ -28,7 +27,6 @@ const InputSection = ({inputData, updateInputData ,handleSubmission}) => {
             onUpdate={(e) => updateInputData('mortgageTerm', e.target.value)}
             label="Mortgage Term"
             unit="years"
-            required
           />
           <Input
             name="interestRate"
@@ -37,7 +35,6 @@ const InputSection = ({inputData, updateInputData ,handleSubmission}) => {
             onUpdate={(e) => updateInputData('interestRate', e.target.value)}
             label="Interest Rate"
             unit="%"
-            required
           />
           <RadioButtonGroup
             name="mortgageType"
@@ -46,7 +43,6 @@ const InputSection = ({inputData, updateInputData ,handleSubmission}) => {
             selectedOption={inputData.mortgageType}
             onUpdate={(e) => updateInputData('mortgageType', e.target.value)}
             label="Mortgage Type"
-            required
           />
           <button type="submit">
             <img src={calculatorIcon} alt="an icon of a calculator" />
